@@ -226,7 +226,7 @@ ALTER TABLE public.referans_iletisim OWNER TO postgres;
 --
 
 INSERT INTO public."Calisan" VALUES
-	(1, 3, 4865);
+	(0, 3, 16354);
 
 
 --
@@ -256,7 +256,9 @@ INSERT INTO public."Iller" VALUES
 --
 
 INSERT INTO public."Kurum" VALUES
-	(0, 'Vatan               ', 0);
+	(0, 'Vatan               ', 0),
+	(1, 'Teknosa             ', 0),
+	(2, 'MediaMarkt          ', 0);
 
 
 --
@@ -275,7 +277,7 @@ INSERT INTO public."Meslek" VALUES
 --
 
 INSERT INTO public.basvuru VALUES
-	(0, 1, 0, 3);
+	(0, 0, 0, 3);
 
 
 --
@@ -290,8 +292,6 @@ INSERT INTO public."calisan-maas" VALUES
 -- Data for Name: calisan_iletisim; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.calisan_iletisim VALUES
-	(0, '5428007345 ', 'yalova                                                                                              ', 7701, 1);
 
 
 --
@@ -307,7 +307,7 @@ INSERT INTO public."hakla-iletisim" VALUES
 --
 
 INSERT INTO public."is_Veren" VALUES
-	(0, 0);
+	(3, 0);
 
 
 --
@@ -315,9 +315,10 @@ INSERT INTO public."is_Veren" VALUES
 --
 
 INSERT INTO public.kisi VALUES
-	(0, 'Ahmet Vatan                   ', 0),
-	(1, 'Taha Adiguzel                 ', 1),
-	(2, 'Volkan Ozten                  ', 2);
+	(0, 'Taha Adıgüzel                 ', 1),
+	(3, 'Vatan PC                      ', 0),
+	(2, 'Mehmet                        ', 1),
+	(4, 'Volkan Ozten                  ', 2);
 
 
 --
@@ -341,7 +342,7 @@ INSERT INTO public.kurum_iletisim VALUES
 --
 
 INSERT INTO public.referans VALUES
-	(2, 1);
+	(4, 0);
 
 
 --
@@ -349,7 +350,7 @@ INSERT INTO public.referans VALUES
 --
 
 INSERT INTO public.referans_iletisim VALUES
-	(0, 2, 245, 'volkan@gmailc.om              ');
+	(0, 4, 547, 'volkan@hotmail.com            ');
 
 
 --
@@ -585,19 +586,19 @@ ALTER TABLE ONLY public."is_Veren"
 
 
 --
--- Name: kurum_bolum kurum; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.kurum_bolum
-    ADD CONSTRAINT kurum FOREIGN KEY (kurum_no) REFERENCES public."Kurum"("Kurum_id") MATCH FULL ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
 -- Name: basvuru kurum-basvuru; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.basvuru
     ADD CONSTRAINT "kurum-basvuru" FOREIGN KEY (kurum_no) REFERENCES public."Kurum"("Kurum_id") MATCH FULL ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: kurum_bolum kurum-bolum; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.kurum_bolum
+    ADD CONSTRAINT "kurum-bolum" FOREIGN KEY (kurum_no) REFERENCES public."Kurum"("Kurum_id") MATCH FULL ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
